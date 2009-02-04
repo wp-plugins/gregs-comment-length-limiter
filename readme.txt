@@ -24,7 +24,7 @@ For users without Javascript, the counter degrades gracefully, providing a visua
 
 For coders, the plugin provides additional configuration options via direct calls.
 
-For more information, please see this plugin's information page: [Greg's Comment Length Limiter Plugin](http://counsellingresource.com/features/)
+For more information, please see this plugin's information page: [Greg's Comment Length Limiter Plugin](http://counsellingresource.com/features/2009/02/04/comment-length-limiter-plugin/)
 
 == Installation ==
 
@@ -73,7 +73,7 @@ However, if you would like to remove the plugin completely, just disable it via 
 
 I'll be maintaining a FAQ at the main information page for the plugin, where it can be updated independently of new releases:
 
-[Greg's Comment Length Limiter Plugin](http://counsellingresource.com/features/)
+[Greg's Comment Length Limiter Plugin](http://counsellingresource.com/features/2009/02/04/comment-length-limiter-plugin/)
 
 == Screenshots ==
 
@@ -90,7 +90,7 @@ I'll be maintaining a FAQ at the main information page for the plugin, where it 
 
 For more information, please see this plugin's information page:
 
-[Greg's Comment Length Limiter Plugin](http://counsellingresource.com/features/)
+[Greg's Comment Length Limiter Plugin](http://counsellingresource.com/features/2009/02/04/comment-length-limiter-plugin/)
 
 == Fine Print ==
 
