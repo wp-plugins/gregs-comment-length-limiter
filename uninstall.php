@@ -3,7 +3,7 @@ if( !defined( 'ABSPATH' ) && !defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit();
 } else {
 	   if (current_user_can('delete_plugins')) {
-		   $gcll_settings = array ('gcll_upper_limit','gcll_auto_box','gcll_characters_available','gcll_override_for_admin','gcll_thank_you','gcll_thank_you_message');
+		   $gcll_settings = array ('gcll_upper_limit','gcll_auto_box','gcll_characters_available','gcll_oversize','gcll_override_for_admin','gcll_thank_you','gcll_thank_you_message');
 		   // Nuke the options
 		   echo '<div id="message" class="updated fade">';
 		   foreach($gcll_settings as $setting) {

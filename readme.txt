@@ -1,10 +1,10 @@
 === Greg's Comment Length Limiter ===
 Contributors: GregMulhauser
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2799661
-Tags: comments, comment length, length limit, comment size, size limit, comments.php, greg mulhauser, seo, paged comments, javascript, performance, loading time, AJAX
+Tags: comments, comment length, length limit, comment size, size limit, comments.php, greg mulhauser, seo, paged comments, javascript, performance, loading time, AJAX, spam, comment spam, anti-spam
 Requires at least: 2.7
 Tested up to: 2.7
-Stable tag: 1.0
+Stable tag: 1.1
 
 Provides a configurable limit on the length of comments left in the comment form, with a dynamically updated character count displayed for the user.
 
@@ -12,15 +12,21 @@ Provides a configurable limit on the length of comments left in the comment form
 
 This plugin provides a configurable limit on the length of comments left in the comment form, with a character countdown displayed for the user and dynamically updated with each keypress.
 
+= New in This Version =
+
+* As an anti-spam measure, if a user (or spambot) bypasses the JavaScript length limit, oversized comments can now be forcibly truncated, marked for moderation, marked as spam, or just passed through without modification.
+
+= Background =
+
 Most of us welcome comments on our blog posts, but that doesn't necessarily mean that we -- or our readers -- like to see comments reaching into thousands of words. Readers may be discouraged from commenting themselves (or reading comments at all) when they see very long entries left by others, and during times of high load, the significant performance overheads associated with retrieving and displaying long comments can slow even the speediest dedicated servers.
 
 From the perspective of SEO (search engine optimization), very long comments also dilute the impact of the author's original post by relegating it to a small proportion of the overall content available on the page.
 
 The primary approach to limiting the total volume of comment material displayed on a page has long been to break up comments across several pages -- either via a plugin or now with the built-in paged comment feature introduced in WordPress 2.7.
 
-This plugin provides one more tool by directly limiting the length of any one comment. A lightweight Javascript counter -- just 5 lines of inline Javascript, with no gigantic external AJAX libraries to load -- lets the user know how many characters they have left to complete their entry. Any additional text which might be inserted beyond the configured limit via cutting and pasting is automatically trimmed to length.
+This plugin provides one more tool by directly limiting the length of any one comment. A lightweight JavaScript counter -- just 5 lines of inline JavaScript, with no gigantic external AJAX libraries to load -- lets the user know how many characters they have left to complete their entry. Any additional text which might be inserted beyond the configured limit via cutting and pasting is automatically trimmed to length.
 
-For users without Javascript, the counter degrades gracefully, providing a visual indication of the preferred (but unenforced) length limit, without the countdown feature.
+For users without JavaScript, the counter degrades gracefully, providing a visual indication of the preferred (but unenforced) length limit, without the countdown feature.
 
 For coders, the plugin provides additional configuration options via direct calls.
 

@@ -1,6 +1,6 @@
 <?php
 /*
-	 WordPress 2.7 Plugin: Greg's Comment Length Limiter 1.0
+	 WordPress 2.7 Plugin: Greg's Comment Length Limiter 1.1
 	 Copyright (c) 2009 Greg Mulhauser
 	 
 	 File Written By:
@@ -51,6 +51,21 @@ $plugin_page = ' <a href="http://counsellingresource.com/features/2009/02/04/com
 	  <th scope="row" valign="top"><?php _e('Text to Display After the Countdown Box', 'gcll-plugin'); ?></th>
 	  <td>
 			  <input type="text" size="40" name="gcll_characters_available" value="<?php echo get_option('gcll_characters_available'); ?>" /><br /><?php _e('(Recommended: &#8216;characters available&#8217;)', 'gcll-plugin'); ?>
+	  </td> 
+  </tr>
+</table>
+<h3><?php _e('Enforcing Your Limit for Oversized Comments', 'gcll-plugin'); ?></h3>
+<p><?php _e('Users without JavaScript enabled won&#8217;t have their comments automatically trimmed when they reach the length limit &mdash; and neither will spambots. You can choose what to do when an oversized comment gets past the JavaScript limit.', 'gcll-plugin'); ?></p>
+<table class="form-table">
+  <tr>
+	  <th scope="row" valign="top"><?php _e('Action for Oversized Comments?', 'gcll-plugin'); ?></th>
+	  <td>
+	  <ul>
+		  <li><input type="radio" name="gcll_oversize" value="0"<?php checked('0', get_option('gcll_oversize')); ?> /> <?php _e('Don&#8217;t Do Anything - Just Let it Go Through for Further Processing', 'gcll-plugin'); ?></li>
+		  <li><input type="radio" name="gcll_oversize" value="1"<?php checked('1', get_option('gcll_oversize')); ?> /> <?php _e('Truncate - Forcibly Trim the Comment to Length, Then Let it Go Through', 'gcll-plugin'); ?></li>
+		  <li><input type="radio" name="gcll_oversize" value="2"<?php checked('2', get_option('gcll_oversize')); ?> /> <?php _e('Moderate - Automatically Mark the Comment for Moderation', 'gcll-plugin'); ?></li>
+		  <li><input type="radio" name="gcll_oversize" value="3"<?php checked('3', get_option('gcll_oversize')); ?> /> <?php _e('Spam - Automatically Mark the Comment as Spam', 'gcll-plugin'); ?></li>
+	  </ul>
 	  </td> 
   </tr>
 </table>
