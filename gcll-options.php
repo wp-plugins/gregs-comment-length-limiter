@@ -1,6 +1,6 @@
 <?php
 /*
-	 WordPress 2.7 Plugin: Greg's Comment Length Limiter 1.1
+	 WordPress 2.7 Plugin: Greg's Comment Length Limiter 1.1.1
 	 Copyright (c) 2009 Greg Mulhauser
 	 
 	 File Written By:
