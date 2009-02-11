@@ -1,0 +1,113 @@
+=== Greg's Comment Length Limiter ===
+Contributors: GregMulhauser
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2799661
+Tags: comments, comment length, length limit, comment size, size limit, comments.php, greg mulhauser, seo, paged comments, javascript, performance, loading time, AJAX, spam, comment spam, anti-spam
+Requires at least: 2.7
+Tested up to: 2.7.1
+Stable tag: 1.1.1
+
+Provides a configurable limit on the length of comments left in the comment form, with a dynamically updated character count displayed for the user.
+
+== Description ==
+
+This plugin provides a configurable limit on the length of comments left in the comment form, with a character countdown displayed for the user and dynamically updated with each keypress.
+
+= New in This Version =
+
+* As an anti-spam measure, if a user (or spambot) bypasses the JavaScript length limit, oversized comments can now be forcibly truncated, marked for moderation, marked as spam, or just passed through without modification.
+
+= Background =
+
+Most of us welcome comments on our blog posts, but that doesn't necessarily mean that we -- or our readers -- like to see comments reaching into thousands of words. Readers may be discouraged from commenting themselves (or reading comments at all) when they see very long entries left by others, and during times of high load, the significant performance overheads associated with retrieving and displaying long comments can slow even the speediest dedicated servers.
+
+From the perspective of SEO (search engine optimization), very long comments also dilute the impact of the author's original post by relegating it to a small proportion of the overall content available on the page.
+
+The primary approach to limiting the total volume of comment material displayed on a page has long been to break up comments across several pages -- either via a plugin or now with the built-in paged comment feature introduced in WordPress 2.7.
+
+This plugin provides one more tool by directly limiting the length of any one comment. A lightweight JavaScript counter -- just 5 lines of inline JavaScript, with no gigantic external AJAX libraries to load -- lets the user know how many characters they have left to complete their entry. Any additional text which might be inserted beyond the configured limit via cutting and pasting is automatically trimmed to length.
+
+For users without JavaScript, the counter degrades gracefully, providing a visual indication of the preferred (but unenforced) length limit, without the countdown feature.
+
+For coders, the plugin provides additional configuration options via direct calls.
+
+For more information, please see this plugin's information page: [Greg's Comment Length Limiter Plugin](http://counsellingresource.com/features/2009/02/04/comment-length-limiter-plugin/)
+
+== Installation ==
+
+1. Unzip the plugin archive
+2. Upload the entire folder `gregs-comment-length-limiter` to `/wp-content/plugins/`
+3. Activate the plugin through the 'Plugins' menu in WordPress
+4. Go to Settings -> Comment Length Limiter to configure your preferences
+5. Update your template's `comments.php` with one or two function calls, as described below
+
+= Usage =
+
+With just a single line of code, most themes which support WordPress 2.7 will also support the comment length limit provided by this plugin. (Note that themes must include the `wp_footer()` call in order for this plugin -- and many others out there -- to work correctly.)
+
+* Make sure your comment form has a *name* attribute of `commentform`. (The default template includes an *id* with this value, but not a *name* attribute.)
+* Add the following function call within the textarea tag for your comment area, preferably wrapped in a conditional that tests whether the function exists: `<?php gcll_tweak_textarea(); ?>`
+
+For example, here is how the WordPress 2.7 default theme's comment textarea looks after updating the tag to support Greg's Comment Length Limiter plugin:
+
+`<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4" <?php if (function_exists('gcll_tweak_textarea')) gcll_tweak_textarea(); ?>></textarea></p>`
+
+Optionally, if you would like to position the countdown box yourself, add the following function call wherever you would like the box to appear within your comment form, again preferably wrapped in a conditional that tests whether the function exists:
+
+`<?php gcll_show_limit_box_manually(); ?>`
+
+The plugin settings page allows you to specify whether you would like the plugin to place the countdown box automatically, or whether you would prefer to do that yourself. If you specify that the plugin should place the countdown box automatically, that setting will apply even if you also include manual placement code within your theme -- in other words, the plugin is intelligent enough not to attempt to do it twice. So, if you'd like to compare your placement with the default placement, you can flip the manual placement setting on and off and view the results, without repeatedly adding and deleting the call from your theme.
+
+*Direct Calls*
+
+For styling purposes, manual calls to display the countdown box, using `<?php gcll_show_limit_box_manually(); ?>`, can also take one parameter specifying your preferred class for the `<span>` which encloses the box: `<?php gcll_show_limit_box_manually('mypreferredclass'); ?>`.
+
+The default `<span>` class is `countdownbox`.
+
+*Safe Wrapping of Plugin-Dependent Function Calls*
+
+I cover safe wrapping of plugin-dependent function calls on the information page for one of my other plugins:
+
+[Greg's Threaded Comment Numbering Plugin](http://counsellingresource.com/features/2009/01/27/threaded-comment-numbering-plugin-for-wordpress/)
+
+= Deactivating and Uninstalling =
+
+You can deactivate Greg's Comment Length Limiter plugin via the plugins administration page, and your preferences will be saved for the next time you enable it.
+
+However, if you would like to remove the plugin completely, just disable it via the plugins administration page, then select it from the list of recently deactivated plugins and choose "Delete" from the admin menu. This will not only delete the plugin, but it will also run a special routine included with the plugin which will completely remove its preferences from the database.
+
+== Frequently Asked Questions ==
+
+I'll be maintaining a FAQ at the main information page for the plugin, where it can be updated independently of new releases:
+
+[Greg's Comment Length Limiter Plugin](http://counsellingresource.com/features/2009/02/04/comment-length-limiter-plugin/)
+
+== Screenshots ==
+
+1. Basic comment length limiter configuration options
+2. Comment length limiter plugin in use with the default theme
+
+== Revision History ==
+
+**1.1.1, 11 February 2009**
+
+* Now prevents Spam Karma 2 from overriding our choice to mark over-sized comments for moderation or to treat as spam
+
+**1.1, 10 February 2009**
+
+* New anti-spam options
+
+**1.0, 4 February 2009**
+
+* Initial public release
+
+== More Information ==
+
+For more information, please see this plugin's information page:
+
+[Greg's Comment Length Limiter Plugin](http://counsellingresource.com/features/2009/02/04/comment-length-limiter-plugin/)
+
+== Fine Print ==
+
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License version 3 as published by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
