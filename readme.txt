@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: comments, comment length, length limit, comment size, size limit, comments.php, greg mulhauser, seo, paged comments, javascript, performance, loading time, AJAX, spam, comment spam, anti-spam
 Requires at least: 2.7
 Tested up to: 2.7.1
-Stable tag: 1.1.1
+Stable tag: 1.2
 
 Provides a configurable limit on the length of comments left in the comment form, with a dynamically updated character count displayed for the user.
 
@@ -14,7 +14,9 @@ This plugin provides a configurable limit on the length of comments left in the 
 
 = New in This Version =
 
-* As an anti-spam measure, if a user (or spambot) bypasses the JavaScript length limit, oversized comments can now be forcibly truncated, marked for moderation, marked as spam, or just passed through without modification.
+* Higher performance, several minor enhancements, and a revamped administrative interface
+
+For more details on what's new in the latest main release, version 1.2, please see the update announcement: [WordPress Comment Length Limiter Plugin Updated](http://counsellingresource.com/features/2009/04/01/comment-limit-plugin-updated/)
 
 = Background =
 
@@ -88,13 +90,17 @@ I'll be maintaining a FAQ at the main information page for the plugin, where it 
 
 == Revision History ==
 
+**1.2, 1 April 2009**
+
+* This version brings higher performance, several minor enhancements, and a revamped administrative interface; it is recommended for all users.
+
 **1.1.1, 11 February 2009**
 
 * Now prevents Spam Karma 2 from overriding our choice to mark over-sized comments for moderation or to treat as spam
 
 **1.1, 10 February 2009**
 
-* New anti-spam options
+* As an anti-spam measure, if a user (or spambot) bypasses the JavaScript length limit, oversized comments can now be forcibly truncated, marked for moderation, marked as spam, or just passed through without modification.
 
 **1.0, 4 February 2009**
 
