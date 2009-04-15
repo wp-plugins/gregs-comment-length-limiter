@@ -220,8 +220,8 @@ $stepper = '0';
 
 while ($stepper < $elements) {
 
-$header = wptexturize(__($settings['header'][$stepper]), $domain);
-$preface = wptexturize(__($settings['preface'][$stepper]), $domain);
+$header = wptexturize(__($settings['header'][$stepper], $domain));
+$preface = wptexturize(__($settings['preface'][$stepper], $domain));
 
 if ($header != '')
 	$output .= "<h3>{$header}</h3>\n";
