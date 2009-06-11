@@ -3,7 +3,7 @@
 Plugin Name: Greg's Comment Length Limiter
 Plugin URI: http://counsellingresource.com/features/2009/02/04/comment-length-limiter-plugin/
 Description: For WordPress 2.7 and above, this plugin displays a countdown of the remaining characters available as users enter comments on your posts, with a total comment length limit set by you.
-Version: 1.2.1
+Version: 1.2.2
 Author: Greg Mulhauser
 Author URI: http://counsellingresource.com/
 */
@@ -179,7 +179,7 @@ gcll_setup_setngo();
 } 
 else
 {
-$gcll_instance = new gregsCommentLengthLimiter('gcll', '1.2.1', "Greg's Comment Length Limiter");
+$gcll_instance = new gregsCommentLengthLimiter('gcll', '1.2.2', "Greg's Comment Length Limiter");
 function gcll_tweak_textarea() {
 global $gcll_instance;
 $gcll_instance->tweak_textarea();
