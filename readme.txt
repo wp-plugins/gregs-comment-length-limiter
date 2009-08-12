@@ -3,8 +3,8 @@ Contributors: GregMulhauser
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2799661
 Tags: comments, comment length, length limit, comment size, size limit, comments.php, greg mulhauser, seo, paged comments, javascript, performance, loading time, AJAX, spam, comment spam, anti-spam
 Requires at least: 2.7
-Tested up to: 2.8
-Stable tag: 1.2.2
+Tested up to: 2.8.4
+Stable tag: 1.2.3
 
 Provides a configurable limit on the length of comments left in the comment form, with a dynamically updated character count displayed for the user.
 
@@ -14,7 +14,9 @@ This plugin provides a configurable limit on the length of comments left in the 
 
 = New in This Version =
 
-* Higher performance, several minor enhancements, and a revamped administrative interface
+* Documentation tweaks
+* Added support for [Sustainable Plugin Sponsorship Network](http://pluginsponsors.com/)
+* Fully tested with 2.8.4 (no changes)
 
 For more details on what's new in the latest main release, version 1.2, please see the update announcement: [WordPress Comment Length Limiter Plugin Updated](http://counsellingresource.com/features/2009/04/01/comment-limit-plugin-updated/)
 
@@ -31,8 +33,6 @@ This plugin provides one more tool by directly limiting the length of any one co
 For users without JavaScript, the counter degrades gracefully, providing a visual indication of the preferred (but unenforced) length limit, without the countdown feature.
 
 For coders, the plugin provides additional configuration options via direct calls.
-
-For more information, please see this plugin's information page: [Greg's Comment Length Limiter Plugin](http://counsellingresource.com/features/2009/02/04/comment-length-limiter-plugin/)
 
 == Installation ==
 
@@ -79,46 +79,37 @@ However, if you would like to remove the plugin completely, just disable it via 
 
 == Frequently Asked Questions ==
 
-I'll be maintaining a FAQ at the main information page for the plugin, where it can be updated independently of new releases:
-
-[Greg's Comment Length Limiter Plugin](http://counsellingresource.com/features/2009/02/04/comment-length-limiter-plugin/)
+I'll be maintaining a FAQ at the main information page for the plugin, where it can be updated independently of new releases.
 
 == Screenshots ==
 
 1. Basic comment length limiter configuration options
 2. Comment length limiter plugin in use with the default theme
 
-== Revision History ==
+== Changelog ==
 
-**1.2.2, 11 June 2009**
+= 1.2.3, 12 August 2009 =
+* Documentation tweaks
+* Added support for [Plugin Sponsorship](http://pluginsponsors.com/)
+* Fully tested with 2.8.4 (no changes)
 
+= 1.2.2, 11 June 2009 =
 * Fully tested with final release of WordPress 2.8
 
-**1.2.1, 15 April 2009**
-
+= 1.2.1, 15 April 2009 =
 * Fixed a minor typo which would have interfered with translations for this plugin -- thanks to Nikolay
 
-**1.2, 1 April 2009**
-
+= 1.2, 1 April 2009 =
 * This version brings higher performance, several minor enhancements, and a revamped administrative interface; it is recommended for all users.
 
-**1.1.1, 11 February 2009**
-
+= 1.1.1, 11 February 2009 =
 * Now prevents Spam Karma 2 from overriding our choice to mark over-sized comments for moderation or to treat as spam
 
-**1.1, 10 February 2009**
-
+= 1.1, 10 February 2009 =
 * As an anti-spam measure, if a user (or spambot) bypasses the JavaScript length limit, oversized comments can now be forcibly truncated, marked for moderation, marked as spam, or just passed through without modification.
 
-**1.0, 4 February 2009**
-
+= 1.0, 4 February 2009 =
 * Initial public release
-
-== More Information ==
-
-For more information, please see this plugin's information page:
-
-[Greg's Comment Length Limiter Plugin](http://counsellingresource.com/features/2009/02/04/comment-length-limiter-plugin/)
 
 == Fine Print ==
 
