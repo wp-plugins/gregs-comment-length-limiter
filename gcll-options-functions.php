@@ -43,7 +43,7 @@ var $path; // where are we?
 var $submenu; // plain name of submenu we're displaying
 var $thispage; // name of this page, from keys in var $pages
 
-function ghpseoOptionsHandler($swap = array(), $pages = array(),$domain,$plugin_prefix='',$subdir='',$instname='') {
+function gcllOptionsHandler($swap = array(), $pages = array(),$domain,$plugin_prefix='',$subdir='',$instname='') {
 $this->__construct($swap,$pages,$domain,$plugin_prefix,$subdir,$instname);
 return;
 } 
