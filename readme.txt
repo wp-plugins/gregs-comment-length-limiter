@@ -3,8 +3,8 @@ Contributors: GregMulhauser
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2799661
 Tags: comments, comment length, length limit, comment size, size limit, comments.php, greg mulhauser, seo, paged comments, javascript, performance, loading time, AJAX, spam, comment spam, anti-spam
 Requires at least: 2.7
-Tested up to: 2.8.4
-Stable tag: 1.2.4
+Tested up to: 2.8.5
+Stable tag: 1.2.5
 
 Provides a configurable limit on the length of comments left in the comment form, with a dynamically updated character count displayed for the user.
 
@@ -14,9 +14,8 @@ This plugin provides a configurable limit on the length of comments left in the 
 
 = New in This Version =
 
-* Documentation tweaks
-* Added support for [Sustainable Plugin Sponsorship Network](http://pluginsponsors.com/)
-* Fully tested with 2.8.4 (no changes)
+* Minor update to configuration pages
+* Fully tested with 2.8.5 (no changes)
 
 For more details on what's new in the latest main release, version 1.2, please see the update announcement: [WordPress Comment Length Limiter Plugin Updated](http://counsellingresource.com/features/2009/04/01/comment-limit-plugin-updated/)
 
@@ -87,6 +86,10 @@ I'll be maintaining a FAQ at the main information page for the plugin, where it 
 2. Comment length limiter plugin in use with the default theme
 
 == Changelog ==
+
+= 1.2.5, 10 November 2009 =
+* Minor update to configuration pages
+* Fully tested with 2.8.5 (no changes)
 
 = 1.2.4, 17 August 2009 =
 * Options page bugfix for users on old PHP4 installations
