@@ -3,8 +3,8 @@ Contributors: GregMulhauser
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2799661
 Tags: comments, comment length, length limit, comment size, size limit, comments.php, greg mulhauser, seo, paged comments, javascript, performance, loading time, AJAX, spam, comment spam, anti-spam
 Requires at least: 2.7
-Tested up to: 2.8.5
-Stable tag: 1.2.5
+Tested up to: 2.9.1
+Stable tag: 1.2.6
 
 Provides a configurable limit on the length of comments left in the comment form, with a dynamically updated character count displayed for the user.
 
@@ -14,8 +14,7 @@ This plugin provides a configurable limit on the length of comments left in the 
 
 = New in This Version =
 
-* Minor update to configuration pages
-* Fully tested with 2.8.5 (no changes)
+* Fully tested with 2.9.1 (no changes)
 
 For more details on what's new in the latest main release, version 1.2, please see the update announcement: [WordPress Comment Length Limiter Plugin Updated](http://counsellingresource.com/features/2009/04/01/comment-limit-plugin-updated/)
 
@@ -23,7 +22,7 @@ For more details on what's new in the latest main release, version 1.2, please s
 
 Most of us welcome comments on our blog posts, but that doesn't necessarily mean that we -- or our readers -- like to see comments reaching into thousands of words. Readers may be discouraged from commenting themselves (or reading comments at all) when they see very long entries left by others, and during times of high load, the significant performance overheads associated with retrieving and displaying long comments can slow even the speediest dedicated servers.
 
-From the perspective of SEO (search engine optimization), very long comments also dilute the impact of the author's original post by relegating it to a small proportion of the overall content available on the page.
+From the perspective of SEO (search engine optimization), very long comments also dilute the impact of the author's original post by relegating it to a small proportion of the overall content available on the page. For advanced SEO capabilities, see [Greg's High Performance SEO Plugin](http://counsellingresource.com/features/2009/07/23/high-performance-seo/).
 
 The primary approach to limiting the total volume of comment material displayed on a page has long been to break up comments across several pages -- either via a plugin or now with the built-in paged comment feature introduced in WordPress 2.7.
 
@@ -86,6 +85,9 @@ I'll be maintaining a FAQ at the main information page for the plugin, where it 
 2. Comment length limiter plugin in use with the default theme
 
 == Changelog ==
+
+= 1.2.6, 12 January 2010 =
+* Fully tested with 2.9.1 (no changes)
 
 = 1.2.5, 10 November 2009 =
 * Minor update to configuration pages
