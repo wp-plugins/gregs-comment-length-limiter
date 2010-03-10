@@ -3,7 +3,7 @@
 Plugin Name: Greg's Comment Length Limiter
 Plugin URI: http://counsellingresource.com/features/2009/02/04/comment-length-limiter-plugin/
 Description: For WordPress 2.7 and above, this plugin displays a countdown of the remaining characters available as users enter comments on your posts, with a total comment length limit set by you.
-Version: 1.2.6
+Version: 1.2.7
 Author: Greg Mulhauser
 Author URI: http://counsellingresource.com/
 */
@@ -41,7 +41,7 @@ $this->our_name = $our_name;
 add_action('wp_footer', array(&$this,'do_js'));
 add_action('wp_footer', array(&$this,'do_thank_you'));
 add_action('comment_form', array(&$this,'show_limit_box_wrapper'));
-add_filter('preprocess_comment', array(&$this,'comment_handler'));
+add_filter('preprocess_comment', array(&$this,'comment_handler'), 20);
 return;
 } // end constructor
 
@@ -157,24 +157,32 @@ function no_sk2_please() {
 return;
 } // end no_sk2_please
 
+### Function: Mark as moderated only if not already marked as spam by some other process
+function return_moderated($approved) {
+if ($approved != 'spam') return 0;
+else return $approved;
+}
 
 ### Function: Handle comments once submitted
 function comment_handler($commentdata) {
-if ($this->check_override()) {
+// first check for admin override
+if (!$this->check_override()) return $commentdata;
+// otherwise, carry on processing
 $action = $this->opt('oversize');
 $limit = $this->opt('upper_limit');
 if ((strlen($commentdata['comment_content']) > $limit) && ($action != 0) ) {
-	if ($action == 1) $commentdata['comment_content'] = $this->comment_trimmer($commentdata['comment_content'],$limit);
+	if ($action == 1) {
+		$commentdata['comment_content'] = force_balance_tags($this->comment_trimmer($commentdata['comment_content'],$limit));
+		}
 	elseif ($action == 2) {
-	add_filter('pre_comment_approved', create_function('$a', 'return \'0\';'));
-	$this->no_sk2_please();
-	}
+		add_filter('pre_comment_approved', array(&$this,'return_moderated'));
+		$this->no_sk2_please();
+		}
 	elseif ($action == 3) {
-	add_filter('pre_comment_approved', create_function('$a', 'return \'spam\';'));
-	$this->no_sk2_please();
-	}
+		add_filter('pre_comment_approved', create_function('$a', 'return \'spam\';'));
+		$this->no_sk2_please();
+		}
 	} // end check for oversize and doing something about it
-} // end check for admin override
 return $commentdata;
 } // end comment handler
 
@@ -193,7 +201,7 @@ if (is_admin()) {
    } // end admin-only stuff
 else
    {
-   $gcll_instance = new gregsCommentLengthLimiter('gcll', '1.2.6', "Greg's Comment Length Limiter");
+   $gcll_instance = new gregsCommentLengthLimiter('gcll', '1.2.7', "Greg's Comment Length Limiter");
    function gcll_tweak_textarea() {
 	  global $gcll_instance;
 	  $gcll_instance->tweak_textarea();
