@@ -3,7 +3,7 @@
 Plugin Name: Greg's Comment Length Limiter
 Plugin URI: http://counsellingresource.com/features/2009/02/04/comment-length-limiter-plugin/
 Description: For WordPress 2.7 and above, this plugin displays a countdown of the remaining characters available as users enter comments on your posts, with a total comment length limit set by you.
-Version: 1.2.8
+Version: 1.2.9
 Author: Greg Mulhauser
 Author URI: http://counsellingresource.com/
 */
@@ -22,6 +22,12 @@ Author URI: http://counsellingresource.com/
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+
+if (!function_exists ('is_admin')) {
+   header('Status: 403 Forbidden');
+   header('HTTP/1.1 403 Forbidden');
+   exit();
+   }
 
 class gregsCommentLengthLimiter {
 
@@ -194,14 +200,15 @@ if (is_admin()) {
 	  $prefix = 'gcll';
 	  $location_full = __FILE__;
 	  $location_local = plugin_basename(__FILE__);
+	  $args = compact('prefix','location_full','location_local');
 	  $options_page_details = array (__('Greg&#8217;s Comment Length Limiter Options', 'gcll-plugin'),__('Comment Length Limiter', 'gcll-plugin'),'gregs-comment-length-limiter/gcll-options.php');
-	  new gcllSetupHandler($prefix,$location_full,$location_local,$options_page_details);
+	  new gcllSetupHandler($args,$options_page_details);
 	  } // end setup function
    gcll_setup_setngo();
    } // end admin-only stuff
 else
    {
-   $gcll_instance = new gregsCommentLengthLimiter('gcll', '1.2.8', "Greg's Comment Length Limiter");
+   $gcll_instance = new gregsCommentLengthLimiter('gcll', '1.2.9', "Greg's Comment Length Limiter");
    function gcll_tweak_textarea() {
 	  global $gcll_instance;
 	  $gcll_instance->tweak_textarea();
