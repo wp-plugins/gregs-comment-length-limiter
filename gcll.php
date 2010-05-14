@@ -3,24 +3,24 @@
 Plugin Name: Greg's Comment Length Limiter
 Plugin URI: http://counsellingresource.com/features/2009/02/04/comment-length-limiter-plugin/
 Description: For WordPress 2.7 and above, this plugin displays a countdown of the remaining characters available as users enter comments on your posts, with a total comment length limit set by you.
-Version: 1.2.9
+Version: 1.3
 Author: Greg Mulhauser
 Author URI: http://counsellingresource.com/
 */
 
-/*  Copyright (c) 2009 Greg Mulhauser
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License version 3 as
-    published by the Free Software Foundation.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-    GNU General Public License for more details.
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+/*  Greg's Comment Length Limiter
+	
+	Copyright (c) 2009-2010 Greg Mulhauser
+	http://counsellingresource.com
+	
+	Released under the GPL license
+	http://www.opensource.org/licenses/gpl-license.php
+	
+	**********************************************************************
+	This program is distributed in the hope that it will be useful, but
+	WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+	*****************************************************************
 */
 
 if (!function_exists ('is_admin')) {
@@ -71,6 +71,7 @@ else return false;
 
 ### Function: Greg's Comment Length Limit JS
 function do_js() {
+   if (!is_singular()) return; // don't bother unless we're on a page that could have a comment form
    if ($this->check_override()) {
    $limit = $this->opt('upper_limit');
    $name = $this->our_name;
@@ -95,7 +96,7 @@ return;
 } 
 ### Function: Thank you
 function do_thank_you() {
-  if (($this->opt('thank_you') == 1) && is_single() ){ 
+  if (($this->opt('thank_you') == 1) && is_singular() ){ 
 	$name = $this->our_name;
 	$message = str_replace('%THIS_PLUGIN%','<a href="http://counsellingresource.com/">' . $name . '</a>',$this->opt('thank_you_message'));
 	echo '<p>' . $message . '</p>';
@@ -208,7 +209,7 @@ if (is_admin()) {
    } // end admin-only stuff
 else
    {
-   $gcll_instance = new gregsCommentLengthLimiter('gcll', '1.2.9', "Greg's Comment Length Limiter");
+   $gcll_instance = new gregsCommentLengthLimiter('gcll', '1.3', "Greg's Comment Length Limiter");
    function gcll_tweak_textarea() {
 	  global $gcll_instance;
 	  $gcll_instance->tweak_textarea();
