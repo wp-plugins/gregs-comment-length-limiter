@@ -3,8 +3,8 @@ Contributors: GregMulhauser
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2799661
 Tags: comments, comment length, length limit, comment size, size limit, comments.php, greg mulhauser, seo, paged comments, javascript, performance, loading time, AJAX, spam, comment spam, anti-spam
 Requires at least: 2.7
-Tested up to: 3.0-RC1
-Stable tag: 1.4
+Tested up to: 3.0.1
+Stable tag: 1.5
 
 Provides a configurable limit on the length of comments left in the comment form, with a dynamically updated character count displayed for the user.
 
@@ -14,7 +14,9 @@ This plugin provides a configurable limit on the length of comments left in the 
 
 = New in This Version =
 
-* Major reduction in database footprint in preparation for WordPress 3.0
+* Improved counter box placement options for WordPress 3.0's new comment_form function
+* Improved counter removes dependence on an explicit 'name' attribute for the comment form, relying on 'id' instead
+* Improved comment length accuracy for multi-byte character sets when using anti-spam comment trimming
 
 For more details on what's new in the latest main release, version 1.4, please see the update announcement: [WordPress Plugins Get Performance Boost](http://counsellingresource.com/features/2010/06/01/wordpress-plugins-performance-boost/)
 
@@ -42,9 +44,18 @@ For coders, the plugin provides additional configuration options via direct call
 
 = Usage =
 
-With just a single line of code, most themes which support WordPress 2.7 will also support the comment length limit provided by this plugin. (Note that themes must include the `wp_footer()` call in order for this plugin -- and many others out there -- to work correctly.)
+With just a single line of code -- or none at all -- most themes which support WordPress 2.7 will also support the comment length limit provided by this plugin. (Note that themes must include the `wp_footer()` call in order for this plugin -- and many others out there -- to work correctly.)
 
-* Make sure your comment form has a *name* attribute of `commentform`. (The default template includes an *id* with this value, but not a *name* attribute.)
+*WordPress 3.0 and Themes Using the New Comment Form Function*
+
+Under WordPress 3.0 and later, the entire comment form can be generated via a single call to the function `comment_form()`. If your theme uses the new `comment_form`, this plugin can automatically tweak the form so comments can be counted. The plugin filters the `comment_field` default and inserts the countdown box just after the `label` tag for the comment area. If you'd rather position the countdown box yourself, you can do so by tapping into any of the standard comment form filters and inserting the value returned by `gcll_show_limit_box_for_filtering()`.
+
+If your theme does not use the new 3.0 functionality, please use the instructions in the following section.
+
+*Wordpress 2.9.2 and Earlier, And 3.0+ Themes Without the New Comment Form Functionality*
+
+Preparing your comment form for length limiting is still very straightforward:
+
 * Add the following function call within the textarea tag for your comment area, preferably wrapped in a conditional that tests whether the function exists: `<?php gcll_tweak_textarea(); ?>`
 
 For example, here is how the WordPress 2.7 default theme's comment textarea looks after updating the tag to support Greg's Comment Length Limiter plugin:
@@ -57,9 +68,9 @@ Optionally, if you would like to position the countdown box yourself, add the fo
 
 The plugin settings page allows you to specify whether you would like the plugin to place the countdown box automatically, or whether you would prefer to do that yourself. If you specify that the plugin should place the countdown box automatically, that setting will apply even if you also include manual placement code within your theme -- in other words, the plugin is intelligent enough not to attempt to do it twice. So, if you'd like to compare your placement with the default placement, you can flip the manual placement setting on and off and view the results, without repeatedly adding and deleting the call from your theme.
 
-*Direct Calls*
+*Manual Positioning Via Direct Calls*
 
-For styling purposes, manual calls to display the countdown box, using `<?php gcll_show_limit_box_manually(); ?>`, can also take one parameter specifying your preferred class for the `<span>` which encloses the box: `<?php gcll_show_limit_box_manually('mypreferredclass'); ?>`.
+For styling purposes, manual calls to display the countdown box, using `<?php gcll_show_limit_box_manually(); ?>` or `<?php gcll_show_limit_box_for_filtering(); ?>`, can also take one parameter specifying your preferred class for the `<span>` which encloses the box: `<?php gcll_show_limit_box_manually('mypreferredclass'); ?>`.
 
 The default `<span>` class is `countdownbox`.
 
@@ -86,10 +97,23 @@ I'll be maintaining a FAQ at the main information page for the plugin, where it 
 
 == Upgrade Notice ==
 
-= 1.4, 1 June 2010 =
-* Major reduction in database footprint in preparation for WordPress 3.0
+= 1.5, 12 September 2010 =
+* Improved counter box placement options for WordPress 3.0's new comment_form function
+* Improved counter removes dependence on an explicit 'name' attribute for the comment form, relying on 'id' instead
+* Improved comment length accuracy for multi-byte character sets when using anti-spam comment trimming
 
 == Changelog ==
+
+= 1.5, 12 September 2010 =
+* Improved counter box placement options for WordPress 3.0's new comment_form function
+* Improved counter removes dependence on an explicit 'name' attribute for the comment form, relying on 'id' instead
+* Improved comment length accuracy for multi-byte character sets when using anti-spam comment trimming
+
+= 1.4.2, 24 June 2010 =
+* Better workaround for WordPress 3.0's problems initialising plugins properly under multisite
+
+= 1.4.1, 24 June 2010 =
+* Workaround for rare problem where WordPress interferes with a newly activated plugin's ability to add options when using multisite/network mode
 
 = 1.4, 1 June 2010 =
 * Major reduction in database footprint in preparation for WordPress 3.0
