@@ -3,8 +3,8 @@ Contributors: GregMulhauser
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2799661
 Tags: comments, comment length, length limit, comment size, size limit, comments.php, greg mulhauser, seo, paged comments, javascript, performance, loading time, AJAX, spam, comment spam, anti-spam
 Requires at least: 2.7
-Tested up to: 3.0.1
-Stable tag: 1.5
+Tested up to: 3.1-RC2
+Stable tag: 1.5.1
 
 Provides a configurable limit on the length of comments left in the comment form, with a dynamically updated character count displayed for the user.
 
@@ -14,9 +14,8 @@ This plugin provides a configurable limit on the length of comments left in the 
 
 = New in This Version =
 
-* Improved counter box placement options for WordPress 3.0's new comment_form function
-* Improved counter removes dependence on an explicit 'name' attribute for the comment form, relying on 'id' instead
-* Improved comment length accuracy for multi-byte character sets when using anti-spam comment trimming
+* Minor code cleanup
+* Testing with WP 3.1 Release Candidate 2
 
 For more details on what's new in the latest main release, version 1.4, please see the update announcement: [WordPress Plugins Get Performance Boost](http://counsellingresource.com/features/2010/06/01/wordpress-plugins-performance-boost/)
 
@@ -97,12 +96,15 @@ I'll be maintaining a FAQ at the main information page for the plugin, where it 
 
 == Upgrade Notice ==
 
-= 1.5, 12 September 2010 =
-* Improved counter box placement options for WordPress 3.0's new comment_form function
-* Improved counter removes dependence on an explicit 'name' attribute for the comment form, relying on 'id' instead
-* Improved comment length accuracy for multi-byte character sets when using anti-spam comment trimming
+= 1.5.1, 20 January 2011 =
+* Minor code cleanup
+* Testing with WP 3.1 Release Candidate 2
 
 == Changelog ==
+
+= 1.5.1, 20 January 2011 =
+* Minor code cleanup
+* Testing with WP 3.1 Release Candidate 2
 
 = 1.5, 12 September 2010 =
 * Improved counter box placement options for WordPress 3.0's new comment_form function
