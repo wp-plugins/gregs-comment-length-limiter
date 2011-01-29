@@ -32,11 +32,17 @@ function gcll_options_setngo($option_style = 'consolidate') {
 	$plugin_page = " <a href=\"http://counsellingresource.com/features/2009/02/04/comment-length-limiter-plugin/\">Greg's Comment Length Limiter plugin</a>";
 	$paypal_button = '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2799661"><img src="https://www.paypal.com/en_GB/i/btn/btn_donate_LG.gif" name="paypalsubmit" alt="" border="0" /></a>';
 	$notices = array();
+	// WP 3.0 apparently fails occasionally to allow plugins newly activated on a subdomain to add options, so if we have no options, this will let us know; note that the workaround assumes consolidated options style
+	if (false === get_option("{$plugin_prefix}_settings"))
+		$notices[] = array(
+						'error',
+						__("On rare occasions when using WordPress 3.0+ in multisite/network mode, WordPress interferes with the normal process by which plugins first save their settings with default values. This plugin has detected that its default settings have not yet been saved, and it will not operate correctly with empty settings. Please deactivate the plugin from your plugin management screen, and then reactivate it. Hopefully WordPress will then allow the plugin to initialise its required settings.", $domain),
+						);
 	$replacements = array(
-						 '%site_link%' => $site_link,
-						 '%plugin_page%' => $plugin_page,
-						 '%paypal_button%' => $paypal_button,
-						 );
+						'%site_link%' => $site_link,
+						'%plugin_page%' => $plugin_page,
+						'%paypal_button%' => $paypal_button,
+						);
 	$problems = array();
 	$pages = array (
 				   'default' => array(
