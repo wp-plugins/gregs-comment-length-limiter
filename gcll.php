@@ -3,14 +3,14 @@
 Plugin Name: Greg's Comment Length Limiter
 Plugin URI: http://counsellingresource.com/features/2009/02/04/comment-length-limiter-plugin/
 Description: For WordPress 2.7 and above, this plugin displays a countdown of the remaining characters available as users enter comments on your posts, with a total comment length limit set by you.
-Version: 1.4
+Version: 1.5.3
 Author: Greg Mulhauser
 Author URI: http://counsellingresource.com/
 */
 
 /*  Greg's Comment Length Limiter
 	
-	Copyright (c) 2009-2010 Greg Mulhauser
+	Copyright (c) 2009-2011 Greg Mulhauser
 	http://counsellingresource.com
 	
 	Released under the GPL license
@@ -50,6 +50,7 @@ class gregsCommentLengthLimiter {
 		add_action('wp_footer', array(&$this,'do_js'));
 		add_action('wp_footer', array(&$this,'do_thank_you'));
 		add_action('comment_form', array(&$this,'show_limit_box_wrapper'));
+		add_filter('comment_form_defaults', array(&$this,'handle_tweaks_quietly'), 10, 1);
 		add_filter('preprocess_comment', array(&$this,'comment_handler'), 20);
 		return;
 	} // end constructor
@@ -83,6 +84,7 @@ class gregsCommentLengthLimiter {
 	### Function: Greg's Comment Length Limit JS
 	function do_js() {
 		if (!is_singular()) return; // don't bother unless we're on a page that could have a comment form
+		if (!comments_open()) return;
 		if ($this->check_override()) {
 			$limit = $this->opt('upper_limit');
 			$name = $this->our_name;
@@ -96,7 +98,7 @@ function {$prefix}Counter(textarea) {
 if (textarea.value.length > $limit)
 textarea.value = textarea.value.substring(0, $limit);
 else
-document.commentform.commentLen.value = $limit - textarea.value.length;
+document.getElementById('commentlen').value = $limit - textarea.value.length;
 }
 //-->
 </script>
@@ -118,51 +120,67 @@ EOT;
 
 	### Function: Show the limit box, wrapper for add_action purposes
 	function show_limit_box_wrapper() {
+		if (did_action('comment_form_before')) return; // if this action was done, we must be using comment_form *function* under 3.0+
 		$this->show_limit_box();
 		return;
 	}
 	
 	### Function: Show the limit box
-	function show_limit_box($manual = '0', $spanclass = 'countdownbox') {
+	function show_limit_box($manual = '0', $spanclass = 'countdownbox', $mode = 'normal') {
 		if ($this->check_override()) {
 			$doshow = $this->opt('auto_box');
 			if (!($doshow == $manual )) { // show only if set to auto-show and this isn't a manual call, or this is a manual call and we are not set to auto-show
 				$limit = $this->opt('upper_limit');
 				$available = $this->opt('characters_available');
 				$boxsize = strlen(strval($limit));
-				echo <<<EOT
+				$out = <<<EOT
 <span class="$spanclass">
-<input readonly="readonly" type="text" name="commentLen" size="$boxsize" maxlength="$boxsize" value="$limit" style="width:auto;" />
+<input readonly="readonly" type="text" id="commentlen" size="$boxsize" maxlength="$boxsize" value="$limit" style="width:auto;" />
 &nbsp;$available
 </span>
 EOT;
+				if ('normal' == $mode) echo $out;
+				else return $out;
 			} // end check whether to display
 		} // end check for admin override
 		return;
 	}
 	
 	### Function: Show the limit box manually
-	function show_limit_box_manually($spanclass='countdownbox') {
-		$this->show_limit_box('1',$spanclass);
+	function show_limit_box_manually($spanclass='countdownbox', $mode = 'normal') {
+		if ('quiet' == $mode) {
+			$out = $this->show_limit_box('1', $spanclass, $mode);
+			return $out;
+		}
+		else $this->show_limit_box('1',$spanclass);
 		return;
 	}
 	
+	### Function: Handle tweaks quietly for WP 3.0+ comment_form function
+	function handle_tweaks_quietly($defaults) {
+		$defaults['comment_field'] = str_replace('<textarea ', '<textarea ' . $this->tweak_textarea('quiet') . ' ', $defaults['comment_field']);
+		$defaults['comment_field'] = str_replace('</label>', '</label>' . $this->show_limit_box('0', 'countdownbox', 'quiet'), $defaults['comment_field']);
+		return $defaults;
+	}
+	
 	### Function: Tweak the textarea
-	function tweak_textarea() {
-		if ($this->check_override()) {
-			$prefix = $this->plugin_prefix;
-			echo ' onkeydown="' . $prefix . 'Counter(this)" onkeyup="' . $prefix . 'Counter(this)" ';
-		} // end check for admin override
+	function tweak_textarea($mode = 'normal') {
+		if (!$this->check_override()) return;
+		$prefix = $this->plugin_prefix;
+		$out = ' onkeydown="' . $prefix . 'Counter(this)" onkeyup="' . $prefix . 'Counter(this)" ';
+		if ('quiet' == $mode) return $out;
+		else echo $out;
 		return;
 	}
 	
 	### Function: Comment trimmer
 	function comment_trimmer($totrim='',$length=500,$ellipsis='...') {
-		if (strlen($totrim) > $length) {
-			$totrim = substr($totrim, 0, $length);
-			$lastdot = strrpos($totrim, ".");
-			$lastspace = strrpos($totrim, " ");
-			$shorter = substr($totrim, 0, ($lastdot > $lastspace? $lastdot : $lastspace)); // truncate at either last dot or last space
+		$chr = get_option('blog_charset');
+		if (mb_strlen($totrim, $chr) > $length) {
+			$totrim = mb_substr($totrim, 0, $length, $chr);
+			$lastdot = mb_strrpos($totrim, ".", $chr);
+			$lastspace = mb_strrpos($totrim, " ", $chr);
+			$shorter = mb_substr($totrim, 0, ($lastdot > $lastspace? $lastdot : $lastspace), $chr); // truncate at either last dot or last space
 			$shorter = rtrim($shorter, ' .') . $ellipsis; // trim off ending periods or spaces and append ellipsis
 			} // end of snipping when too long
 			else { $shorter = $totrim; }
@@ -222,17 +240,26 @@ if (is_admin()) { // only load the admin stuff if we're adminning
 	gcll_setup_setngo();
 } // end admin-only stuff
 else {
-	$gcll_instance = new gregsCommentLengthLimiter('gcll', '1.3', "Greg's Comment Length Limiter");
+	$gcll_instance = new gregsCommentLengthLimiter('gcll', '1.5.3', "Greg's Comment Length Limiter");
 	function gcll_tweak_textarea() {
 		global $gcll_instance;
 		$gcll_instance->tweak_textarea();
 		return;
+	} // end tweaking textarea
+	function gcll_tweak_textarea_for_filtering() {
+		global $gcll_instance;
+		return $gcll_instance->tweak_textarea('quiet');
 	} // end tweaking textarea
 	function gcll_show_limit_box_manually($spanclass='countdownbox') {
 		global $gcll_instance;
 		$gcll_instance->show_limit_box_manually($spanclass);
 		return;
 	} // end show limit box manually
+	function gcll_show_limit_box_for_filtering($spanclass='countdownbox') {
+		global $gcll_instance;
+		$out = $gcll_instance->show_limit_box('0', $spanclass, 'quiet');
+		return $out;
+	} // end show limit box for filtering
 } // end non-admin stuff
 
 ?>
