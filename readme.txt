@@ -14,8 +14,7 @@ This plugin provides a configurable limit on the length of comments left in the 
 
 = New in This Version =
 
-* Minor code cleanup
-* Testing with WP 3.1 Release Candidate 3
+* Better customisation options for WordPress 3.0+ `comment_form` filters
 
 For more details on what's new in the latest main release, version 1.4, please see the update announcement: [WordPress Plugins Get Performance Boost](http://counsellingresource.com/features/2010/06/01/wordpress-plugins-performance-boost/)
 
@@ -96,11 +95,13 @@ I'll be maintaining a FAQ at the main information page for the plugin, where it 
 
 == Upgrade Notice ==
 
-= 1.5.2, 29 January 2011 =
-* Minor code cleanup
-* Testing with WP 3.1 Release Candidate 3
+= 1.5.3, 5 Feburary 2011 =
+* Better customisation options for WordPress 3.0+ `comment_form` filters
 
 == Changelog ==
+
+= 1.5.3, 5 Feburary 2011 =
+* Better customisation options for WordPress 3.0+ `comment_form` filters
 
 = 1.5.2, 29 January 2011 =
 * Minor code cleanup
