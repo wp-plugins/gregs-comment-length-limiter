@@ -3,8 +3,8 @@ Contributors: GregMulhauser
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2799661
 Tags: comments, comment length, length limit, comment size, size limit, comments.php, greg mulhauser, seo, paged comments, javascript, performance, loading time, AJAX, spam, comment spam, anti-spam
 Requires at least: 2.7
-Tested up to: 3.1-RC3
-Stable tag: 1.5.2
+Tested up to: 3.2.1
+Stable tag: 1.5.4
 
 Provides a configurable limit on the length of comments left in the comment form, with a dynamically updated character count displayed for the user.
 
@@ -14,7 +14,8 @@ This plugin provides a configurable limit on the length of comments left in the 
 
 = New in This Version =
 
-* Better customisation options for WordPress 3.0+ `comment_form` filters
+* Minor code cleanups
+* Tweak to accommodate automatic placement within Twenty Eleven's pixel-level hard-coded comment form styling. (Remember, the countdown box is available for styling yourself, so please do modify how you would like to appear with your own theme: it is not possible to include universal CSS that works with every theme available.)
 
 For more details on what's new in the latest main release, version 1.4, please see the update announcement: [WordPress Plugins Get Performance Boost](http://counsellingresource.com/features/2010/06/01/wordpress-plugins-performance-boost/)
 
@@ -95,10 +96,15 @@ I'll be maintaining a FAQ at the main information page for the plugin, where it 
 
 == Upgrade Notice ==
 
-= 1.5.3, 5 Feburary 2011 =
-* Better customisation options for WordPress 3.0+ `comment_form` filters
+= 1.5.4, 3 October 2011 =
+* Minor code cleanups
+* Tweak to accommodate automatic placement within Twenty Eleven's pixel-level hard-coded comment form styling. (Remember, the countdown box is available for styling yourself, so please do modify how you would like to appear with your own theme: it is not possible to include universal CSS that works with every theme available.)
 
 == Changelog ==
+
+= 1.5.4, 3 October 2011 =
+* Minor code cleanups
+* Tweak to accommodate automatic placement within Twenty Eleven's pixel-level hard-coded comment form styling. (Remember, the countdown box is available for styling yourself, so please do modify how you would like to appear with your own theme: it is not possible to include universal CSS that works with every theme available.)
 
 = 1.5.3, 5 Feburary 2011 =
 * Better customisation options for WordPress 3.0+ `comment_form` filters
