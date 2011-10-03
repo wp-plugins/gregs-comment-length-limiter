@@ -3,7 +3,7 @@
 Plugin Name: Greg's Comment Length Limiter
 Plugin URI: http://counsellingresource.com/features/2009/02/04/comment-length-limiter-plugin/
 Description: For WordPress 2.7 and above, this plugin displays a countdown of the remaining characters available as users enter comments on your posts, with a total comment length limit set by you.
-Version: 1.5.3
+Version: 1.5.4
 Author: Greg Mulhauser
 Author URI: http://counsellingresource.com/
 */
@@ -135,7 +135,7 @@ EOT;
 				$boxsize = strlen(strval($limit));
 				$out = <<<EOT
 <span class="$spanclass">
-<input readonly="readonly" type="text" id="commentlen" size="$boxsize" maxlength="$boxsize" value="$limit" style="width:auto;" />
+<input readonly="readonly" type="text" id="commentlen" size="$boxsize" maxlength="$boxsize" value="$limit" style="width:auto;text-indent:0;" />
 &nbsp;$available
 </span>
 EOT;
@@ -159,7 +159,7 @@ EOT;
 	### Function: Handle tweaks quietly for WP 3.0+ comment_form function
 	function handle_tweaks_quietly($defaults) {
 		$defaults['comment_field'] = str_replace('<textarea ', '<textarea ' . $this->tweak_textarea('quiet') . ' ', $defaults['comment_field']);
-		$defaults['comment_field'] = str_replace('</label>', '</label>' . $this->show_limit_box('0', 'countdownbox', 'quiet'), $defaults['comment_field']);
+		$defaults['comment_field'] .= $this->show_limit_box('0', 'countdownbox', 'quiet');
 		return $defaults;
 	}
 	
@@ -240,7 +240,7 @@ if (is_admin()) { // only load the admin stuff if we're adminning
 	gcll_setup_setngo();
 } // end admin-only stuff
 else {
-	$gcll_instance = new gregsCommentLengthLimiter('gcll', '1.5.3', "Greg's Comment Length Limiter");
+	$gcll_instance = new gregsCommentLengthLimiter('gcll', '1.5.4', "Greg's Comment Length Limiter");
 	function gcll_tweak_textarea() {
 		global $gcll_instance;
 		$gcll_instance->tweak_textarea();
