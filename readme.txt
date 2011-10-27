@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: comments, comment length, length limit, comment size, size limit, comments.php, greg mulhauser, seo, paged comments, javascript, performance, loading time, AJAX, spam, comment spam, anti-spam
 Requires at least: 2.7
 Tested up to: 3.2.1
-Stable tag: 1.5.4
+Stable tag: 1.5.5
 
 Provides a configurable limit on the length of comments left in the comment form, with a dynamically updated character count displayed for the user.
 
@@ -14,16 +14,15 @@ This plugin provides a configurable limit on the length of comments left in the 
 
 = New in This Version =
 
-* Minor code cleanups
-* Tweak to accommodate automatic placement within Twenty Eleven's pixel-level hard-coded comment form styling. (Remember, the countdown box is available for styling yourself, so please do modify how you would like to appear with your own theme: it is not possible to include universal CSS that works with every theme available.)
+* Documentation updates
 
-For more details on what's new in the latest main release, version 1.4, please see the update announcement: [WordPress Plugins Get Performance Boost](http://counsellingresource.com/features/2010/06/01/wordpress-plugins-performance-boost/)
+For more details on what's new in the latest main release, version 1.4, please see the update announcement: [WordPress Plugins Get Performance Boost](http://gregsplugins.com/lib/2010/06/01/wordpress-plugins-performance-boost/)
 
 = Background =
 
 Most of us welcome comments on our blog posts, but that doesn't necessarily mean that we -- or our readers -- like to see comments reaching into thousands of words. Readers may be discouraged from commenting themselves (or reading comments at all) when they see very long entries left by others, and during times of high load, the significant performance overheads associated with retrieving and displaying long comments can slow even the speediest dedicated servers.
 
-From the perspective of SEO (search engine optimization), very long comments also dilute the impact of the author's original post by relegating it to a small proportion of the overall content available on the page. For advanced SEO capabilities, see [Greg's High Performance SEO Plugin](http://counsellingresource.com/features/2009/07/23/high-performance-seo/).
+From the perspective of SEO (search engine optimization), very long comments also dilute the impact of the author's original post by relegating it to a small proportion of the overall content available on the page. For advanced SEO capabilities, see [Greg's High Performance SEO Plugin](http://gregsplugins.com/lib/plugin-details/gregs-high-performance-seo/).
 
 The primary approach to limiting the total volume of comment material displayed on a page has long been to break up comments across several pages -- either via a plugin or now with the built-in paged comment feature introduced in WordPress 2.7.
 
@@ -75,9 +74,7 @@ The default `<span>` class is `countdownbox`.
 
 *Safe Wrapping of Plugin-Dependent Function Calls*
 
-I cover safe wrapping of plugin-dependent function calls on the information page for one of my other plugins:
-
-[Greg's Threaded Comment Numbering Plugin](http://counsellingresource.com/features/2009/01/27/threaded-comment-numbering-plugin-for-wordpress/)
+I cover safe wrapping of plugin-dependent function calls on the [Greg's Plugins FAQ](http://gregsplugins.com/lib/faq/).
 
 = Deactivating and Uninstalling =
 
@@ -87,7 +84,7 @@ However, if you would like to remove the plugin completely, just disable it via 
 
 == Frequently Asked Questions ==
 
-I'll be maintaining a FAQ at the main information page for the plugin, where it can be updated independently of new releases.
+Please see the [Greg's Plugins FAQ](http://gregsplugins.com/lib/faq/).
 
 == Screenshots ==
 
@@ -96,11 +93,13 @@ I'll be maintaining a FAQ at the main information page for the plugin, where it 
 
 == Upgrade Notice ==
 
-= 1.5.4, 3 October 2011 =
-* Minor code cleanups
-* Tweak to accommodate automatic placement within Twenty Eleven's pixel-level hard-coded comment form styling. (Remember, the countdown box is available for styling yourself, so please do modify how you would like to appear with your own theme: it is not possible to include universal CSS that works with every theme available.)
+= 1.5.5, 27 October 2011 =
+* Documentation updates
 
 == Changelog ==
+
+= 1.5.5, 27 October 2011 =
+* Documentation updates
 
 = 1.5.4, 3 October 2011 =
 * Minor code cleanups
