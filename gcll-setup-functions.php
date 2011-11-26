@@ -2,8 +2,8 @@
 
 /*  Greg's Setup Handler
 	
-	Copyright (c) 2009-2010 Greg Mulhauser
-	http://counsellingresource.com
+	Copyright (c) 2009-2011 Greg Mulhauser
+	http://gregsplugins.com
 	
 	Released under the GPL license
 	http://www.opensource.org/licenses/gpl-license.php
@@ -105,6 +105,7 @@ class gcllSetupHandler {
 		// run through the settings which belong on this page
 		$filtered = array();
 		foreach ($pagekeys as $setting=>$page) {
+			if (!isset($options[$setting])) $options[$setting] = 0; // special case for checkboxes, absent when 0
 			if ($callbacks[$setting]) $filtered[$setting] = $callbacks[$setting]($options[$setting]);
 			else $filtered[$setting] = $options[$setting];
 		}
@@ -171,6 +172,9 @@ class gcllSetupHandler {
 		$prefix_setting = $this->plugin_prefix . '_options_';
 		$prefix = $this->plugin_prefix . '_';
 		if (($this->consolidate) && !get_option($prefix . 'settings')) $this->do_consolidation();
+		// WP 3.0: now we check AGAIN, because on an individual site of a multisite installation, we may have been activated without WP ever running what we registered with our register_activation_hook (are you serious????); we'll take the absence of any settings as an indication that WP failed to run the registered activation function
+		// for now, we'll assume consolidated options -- would need to change this if using discrete options
+		if (($this->consolidate) && !get_option($prefix . 'settings')) $this->activate();
 		if ($this->consolidate) { // if consolidated, do it the quick way
 			register_setting($prefix_setting . 'settings', $prefix . 'settings', array(&$this,'option_filters'));
 		}
