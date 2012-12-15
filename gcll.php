@@ -10,7 +10,7 @@ Author URI: http://gregsplugins.com/
 
 /*  Greg's Comment Length Limiter
 	
-	Copyright (c) 2009-2011 Greg Mulhauser
+	Copyright (c) 2009-2012 Greg Mulhauser
 	http://gregsplugins.com
 	
 	Released under the GPL license
@@ -231,8 +231,11 @@ if (is_admin()) { // only load the admin stuff if we're adminning
 	include ('gcll-setup-functions.php');
 	function gcll_setup_setngo() {
 		$prefix = 'gcll';
-		$location_full = __FILE__;
-		$location_local = plugin_basename(__FILE__);
+		// don't use plugin_basename -- buggy when using symbolic links
+		$dir = basename(dirname( __FILE__)) . '/';
+		$base = basename( __FILE__);
+		$location_full = WP_PLUGIN_DIR . '/' . $dir . $base;
+		$location_local = $dir . $base;
 		$args = compact('prefix','location_full','location_local');
 		$options_page_details = array (__('Greg&#8217;s Comment Length Limiter Options', 'gcll-plugin'),__('Comment Length Limiter', 'gcll-plugin'),'gregs-comment-length-limiter/gcll-options.php');
 		new gcllSetupHandler($args,$options_page_details);
