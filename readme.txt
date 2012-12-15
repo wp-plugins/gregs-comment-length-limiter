@@ -102,6 +102,10 @@ However, if you would like to remove the plugin completely, just disable it via 
 
 == Changelog ==
 
+= 1.5.7, 15 December 2012 =
+* Replaced some ancient admin page code to enable loading the plugin through a symbolic link.
+* Confirmed 3.5 compatibility.
+
 = 1.5.6, 26 November 2011 =
 * Removed PluginSponsors.com code following threats that the plugin would be expelled from the plugin repository for using the code to display sponsorship messages
 
