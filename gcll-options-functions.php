@@ -2,8 +2,8 @@
 
 /*  Greg's Options Handler
 	
-	Copyright (c) 2009-2010 Greg Mulhauser
-	http://counsellingresource.com
+	Copyright (c) 2009-2011 Greg Mulhauser
+	http://gregsplugins.com
 	
 	Released under the GPL license
 	http://www.opensource.org/licenses/gpl-license.php
@@ -41,11 +41,6 @@ class gcllOptionsHandler {
 	var $box_hook;               // keeping track of our boxes and box states
 	var $consolidate;            // whether to consolidate options into single array
 	
-	function gcllOptionsHandler($args) {
-		$this->__construct($args);
-		return;
-	} 
-	
 	function __construct($args) {
 		extract($args);
 		$this->replacements = (array)$replacements;
@@ -58,10 +53,10 @@ class gcllOptionsHandler {
 		$this->notices = (array)$notices;
 		$this->problems = (array)$problems;
 		$this->box_hook = $plugin_prefix . 'optionboxes_';
-		$dir = str_replace(basename( __FILE__),"",plugin_basename(__FILE__)); // get plugin folder name
-		$base = str_replace("-functions.php","",basename( __FILE__)); // get this file's name without extension, assuming it ends with '-functions.php'
+		$dir = basename(dirname( __FILE__)) . '/'; // get plugin folder name
+		$base = basename( __FILE__, '-functions.php'); // get this file's name without extension, assuming it ends with '-functions.php'
 		$this->path = $dir . $base;
-		$subdir = (is_null($subdir)) ? 'options-set' : $subdir;
+		if (!isset($subdir)) $subdir = 'options-set';
 		$subdir .= ($subdir != '') ? '/' : '';
 		$root = WP_PLUGIN_DIR . '/' . $dir . $subdir; // this is where we're looking for our options files
 		$sub = isset ($_GET['submenu']) ? $_GET['submenu'] : '';
@@ -127,7 +122,9 @@ class gcllOptionsHandler {
 		if (!$this->consolidate) return get_option($this->plugin_prefix . $setting);
 		// handle consolidated setting retrieval
 		$settings = get_option($this->plugin_prefix . 'settings');
-		return $settings[$setting];
+		if (isset($settings[$setting]))
+			return $settings[$setting];
+		else return null;
 	}
 	
 	function do_option_replacements($content='') { // we may have some values to swap out
@@ -175,6 +172,7 @@ class gcllOptionsHandler {
 	
 	function conflict_check($problemapps=array(),$name='') { // are other plugins running which could conflict with this one? if so, construct a message to that effect
 		$domain = $this->domain;
+		$conflict = '';
 		foreach ($problemapps as $problemapp) {
 			$test = (array_key_exists('class',$problemapp)) ? 'class' : 'function';
 			$testfx = $test . '_exists';
@@ -185,7 +183,7 @@ class gcllOptionsHandler {
 				else $remedy = '';
 			} // end testing for problem apps
 		} // end loop over problem apps
-		if ($conflict == '') $message = array();
+		if ('' == $conflict) $message = array();
 		else {
 			$warningprefix = __('Warning: Possible conflict with', $domain);
 			$warningend = ($remedy != '') ? $remedy : __('For best results, please disable the interfering plugin',$domain);
@@ -273,18 +271,20 @@ class gcllOptionsHandler {
 		
 			$header = wptexturize(__($settings['header'][$stepper], $domain));
 			$preface = wptexturize(__($settings['preface'][$stepper], $domain));
+
+			$properties = explode(',', $settings['type'][$stepper]);
 			
 			if ($header != '')
 				$output .= "<!--secstart--><h3>{$header}</h3>\n";
 			if (($preface != '') && $full)
 				$output .= "<p>$preface</p>\n";
+			else if (($preface != '') && ($properties[0] == 'extra_desc')) // allow description to go through untouched for 'extra_desc' type
+				$output .= $preface;
 			if (($header != '') || ($preface != ''))
 				$output .= '<table class="form-table ' . $this->plugin_prefix . 'table">';
 			
 			$output .=  '<tr valign="top"><th scope="row">' . $settings['label'][$stepper] . "</th>\n<td>\n";
-			
-			$properties = explode(',', $settings['type'][$stepper]);
-			
+						
 			// get current setting value and adjusted setting name
 			$setting_value = $this->get_setting_value($settings['setting'][$stepper]);
 			$setting_name = $this->adjust_setting_name($settings['setting'][$stepper]);
