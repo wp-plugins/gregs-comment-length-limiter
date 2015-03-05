@@ -1,10 +1,10 @@
 === Greg's Comment Length Limiter ===
 Contributors: GregMulhauser
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2799661
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HZS4Z96ZND8L4
 Tags: comments, comment length, length limit, comment size, size limit, comments.php, greg mulhauser, seo, paged comments, javascript, performance, loading time, AJAX, spam, comment spam, anti-spam
 Requires at least: 2.7
-Tested up to: 4.1
-Stable tag: 1.6.3
+Tested up to: 4.1.1
+Stable tag: 1.6.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -16,9 +16,12 @@ Provides a configurable limit on the length of comments left in the comment form
 
 This plugin provides a configurable limit on the length of comments left in the comment form, with a character countdown displayed for the user and dynamically updated with each keypress.
 
+> My complete portfolio of 50 plugins, including this one, and also including the new [Faster Cache for WordPress](http://fastercache.com/) is now [available for adoption](http://gregsplugins.com/lib/sale/)!
+
 = New in This Version =
 
-* Fixed potential XSS vulnerability which could affect administrators who are logged in using an old browser and who visit a maliciously crafted URL on their own site. Thanks to Kacper Szurek for responsible disclosure of this problem in a different plugin.
+* Updates to documentation and code improvements
+* Note on portfolion of plugins now available for adoption
 
 = Background =
 
@@ -97,10 +100,15 @@ However, if you would like to remove the plugin completely, just disable it via 
 
 == Upgrade Notice ==
 
-= 1.6.3, 10 January 2015 =
-* Fixed potential XSS vulnerability which could affect administrators who are logged in using an old browser and who visit a maliciously crafted URL on their own site. Thanks to Kacper Szurek for responsible disclosure of this problem in a different plugin.
+= 1.6.4, 5 March 2015 =
+* Updates to documentation and code improvements
+* Note on portfolion of plugins now available for adoption
 
 == Changelog ==
+
+= 1.6.4, 5 March 2015 =
+* Updates to documentation and code improvements
+* Note on portfolion of plugins now available for adoption
 
 = 1.6.3, 10 January 2015 =
 * Fixed potential XSS vulnerability which could affect administrators who are logged in using an old browser and who visit a maliciously crafted URL on their own site. Thanks to Kacper Szurek for responsible disclosure of this problem in a different plugin.
@@ -183,7 +191,7 @@ However, if you would like to remove the plugin completely, just disable it via 
 
 = 1.2.3, 12 August 2009 =
 * Documentation tweaks
-* Added support for [Plugin Sponsorship](http://pluginsponsors.com/)
+* Added support for plugin sponsorship
 * Fully tested with 2.8.4 (no changes)
 
 = 1.2.2, 11 June 2009 =
